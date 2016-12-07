@@ -1,36 +1,52 @@
 // You may run this MLM with: $ arden2bytecode -r hello_world.mlm
 
+/*
+ * The maintenance category covers general information used for developing
+ * this Medical Logic Module (MLM).
+ */
 maintenance:
-    title: Hello World Example;;
+    title: Hello World;;
     mlmname: hello_world;;
-    arden: version 2.1;;  
-    version: 1.0;;
-    institution: Peter L. Reichertz Institut;;
+    arden: Version 2.5;;
+    version: 1.81;;
+    institution: arden2bytecode authors;;
     author: Hannes Flicka;;
-    specialist: Hannes Flicka;;
-    date: 2011-09-08;;
+    specialist: Mike Klimek;;
+    date: 2016-12-07;;
     validation: testing;;
 
+/*
+ * This category contains additional metadata about the medical knowledge
+ * contained in this module.
+ */
 library:
-    purpose: Demonstration of Arden Syntax and read statement;;
-    explanation: n.a.;;
-    keywords: hello world, example, arden2bytecode, read statement;;
-    links: http://arden2bytecode.sf.net/ ;;
+    purpose: Demonstration of Arden Syntax;;
+    explanation: Prints 'Hello World!';;
+    keywords: hello world; example; Arden Syntax;;
+    citations: ;;
+    links: 'https://plri.github.io/arden2bytecode/docs/';;
 
+// This section contains - among other stuff - the actual program logic.
 knowledge:
-    type: data-driven;;
+    type: data_driven;;
+
     data:
-        name := read {Enter your name};
-        stdout_dest := destination{STDOUT}; 
+        // Define the greeting variable to be the string "Hello world!"
+        LET greeting BE "Hello, World!";
     ;;
 
-    evoke: ;; // MLM is called directly
-      
+    evoke:
+        // This MLM is called directly, so no evoke statement is required.
+    ;;
+
     logic:
-        conclude true;;
+        // The 'CONCLUDE' statement decides whether to execute the action slot.
+        CONCLUDE TRUE;
+    ;;
 
     action:
-        write "Hello " || name || "! " at stdout_dest; 
+        // The actual output.
+        WRITE greeting;
     ;;
 
 end:
