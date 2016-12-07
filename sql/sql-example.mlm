@@ -1,39 +1,39 @@
 // Have a look at the README.md to see how to connect a JDBC driver
 
 maintenance:
-    title: SQL example;;
-    mlmname: sql_example;;
-    arden: version 2.1;;
-    version: 1.0;;
-    institution: Peter L. Reichertz Institut;;
-    author: Hannes Flicka;;
-    specialist: Hannes Flicka;;
-    date: 2011-09-08;;
-    validation: testing;;
+	title: SQL example;;
+	mlmname: sql-example;;
+	arden: version 2.5;;
+	version: 1.0;;
+	institution: Peter L. Reichertz Institut;;
+	author: Hannes Flicka;;
+    specialist: Hannes Flicka; Mike Klimek;;
+    date: 2016-12-07;;
+	validation: testing;;
 
 library:
-    purpose: demonstration of sql usage in read statements;;
-    explanation: ;;
-    keywords: read statement, sql;;
-    links: http://arden2bytecode.sf.net/ ;;
+	purpose: demonstration of sql usage in read statements;;
+	explanation: ;;
+	keywords: read statement, sql;;
+	links: http://arden2bytecode.sf.net/ ;;
 
 knowledge:
-    type: data-driven;;
-    data:
-        stdout_dest := destination {STDOUT};
-        temperature := read last 3 from {select temperature from person where person.name='A' order by timestamp asc};
-        temperature_average := average temperature;
-    ;;
-    evoke:
-        ;; // MLM is called directly
-    logic:
-        conclude true;;
-    action:
-       write "The last 3 measured temperature values were: " || temperature at stdout_dest;
-       write "The average temperature of the last 3 values is: " || temperature_average
-           at stdout_dest;;
+	type: data_driven;;
 
-    urgency:  50;;
+	data:
+		stdout := DESTINATION {STDOUT};
+		temperatures := READ LAST 3 FROM {SELECT temperature FROM person WHERE person.name='A' ORDER BY timestamp ASC};
+		temperature_average := AVERAGE temperatures;
+	;;
+
+    evoke: /* MLM is called directly */ ;;
+
+	logic: CONCLUDE TRUE ;;
+
+	action:
+		WRITE "The last 3 measured temperature values were: " || temperatures AT stdout;
+		WRITE "The average temperature of the last 3 values is: " || temperature_average AT stdout;
+	;;
 
 end:
 
