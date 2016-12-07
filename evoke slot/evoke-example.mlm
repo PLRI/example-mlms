@@ -1,29 +1,50 @@
-// You may run this MLM with: $ arden2bytecode --daemon evoke-example.mlm
+/*
+ * You may run this MLM with: $ arden2bytecode -e evoke_slot.mlm
+ * 
+ * To close the engine press "ctrl+c". 
+ */ 
 
 maintenance:
     title: Evoke Slot Example;;
     mlmname: evoke-example;;
-    arden: version 1.0;;
-    version: 1.0;;
+    arden: version 2.5;;
+    version: 2.0;;
     institution: Peter L. Reichertz Institut;;
     author: Hannes Flicka;;
-    specialist: Hannes Flicka;;
-    date: 2012-04-04;;
+    specialist: Hannes Flicka; Mike Klimek;;
+    date: 2016-12-07;;
     validation: testing;;
 
 library:
     purpose: Demonstration of the evoke slot;;
-    explanation: n.a.;;
+    explanation:
+        The MLM is triggered immediately, by a constant time trigger. It then 
+        calls an event, which triggers the MLM again every few second. Every 
+        time it is run, it will write the TRIGGERTIME.
+    ;;
     keywords: example, arden syntax editor, arden2bytecode;;
     links: http://arden2bytecode.sf.net/ ;;
 
 knowledge:
-    type: data-driven;;
+    type: data_driven;;
+
     data:
-        let dest be destination {stdout};;		
-    evoke: every 5 seconds for 99 years starting 2012-01-01;;
-    logic:
-        conclude true;; 
+        LET evt BE EVENT {evt};
+    ;;
+
+    evoke:
+        1800-01-01; // initial trigger, which lies in the past, runs only once
+        EVERY 2 seconds FOR 1 minute STARTING TIME OF evt;
+    ;;
+
+    logic: CONCLUDE TRUE ;;
+
     action:
-        write "MLM executed on " || now at dest;;
+        IF evt THEN
+            WRITE "MLM executed on " || TRIGGERTIME;
+        ELSE
+            // MLM was not triggered by an event, but by the constant time trigger 
+            CALL evt;
+        ENDIF;
+    ;;
 end:
