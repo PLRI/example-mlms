@@ -2,13 +2,13 @@
 
 maintenance:
     title: Example MLM;;
-    mlmname: examplemlm;;
-    arden: version 1.0;;
-    version: 1.0;;
+    mlmname: example;;
+    arden: version 2.5;;
+    version: 2.0;;
     institution: Peter L. Reichertz Institut;;
     author: Hannes Flicka;;
-    specialist: Hannes Flicka;;
-    date: 2012-04-04;;
+    specialist: Hannes Flicka; Mike Klimek;;
+    date: 2016-12-07;;
     validation: testing;;
 
 library:
@@ -18,21 +18,26 @@ library:
     links: http://arden2bytecode.sf.net/ ;;
 
 knowledge:
-    type: data-driven;;
+    type: data_driven;;
+
     data:
         // set the variables used in this program:
-        let variable be 4; // <- here you can insert other values to try out
-        // set a destination for the write statement later used:
-        let dest be destination {stdout};;
-    evoke: ;; // MLM is called directly
+        LET variable BE 4; // <- here you can insert other values to try out
+    ;;
+
+    evoke: /* MLM is called directly */ ;;
+
     logic:
-        // double variable. could also use: variable := variable * 2;
-        let variable be variable * 2;
-        if variable > 6 then
-            conclude true;  // execute action slot
-        else
-            conclude false; // do not run action slot
-        endif;; 
-    action:
-        write "variable is: " || variable || "." at dest;;
+        // double variable.
+        // could also use: variable := variable * 2;
+        LET variable BE variable * 2;
+                
+        IF variable > 6 THEN
+            CONCLUDE TRUE;  // execute action slot
+        ELSE
+            CONCLUDE FALSE; // do not run action slot
+        ENDIF
+    ;;
+ 
+    action: WRITE "variable is: " || variable || "." ;;
 end:
