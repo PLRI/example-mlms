@@ -1,12 +1,12 @@
 maintenance: 
 	title: Template ;;
-	mlmname: Template;;
+	mlmname: template;;
 	arden: version 2.5;;
 	version: 1.0;;
 	institution: ;;
 	author: ;;
 	specialist: ;;
-	date: 2012-09-05;;
+	date: 2016-12-08;;
 	validation: testing;;
 
 library: 
@@ -17,18 +17,18 @@ library:
 	links: ;;
 
 knowledge:
-	type: data-driven;;
+	type: data_driven;;
 
-data:
-;;
+    data:
+    ;;
 
-evoke: 
-;;
+    evoke: 
+    ;;
 
-logic: 
-;;
+    logic: 
+    ;;
 
-action:
-;;
+    action:
+    ;;
 
 end:
