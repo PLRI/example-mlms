@@ -6,7 +6,7 @@
 
 maintenance:
     title: Evoke Slot Example;;
-    mlmname: evoke-example;;
+    mlmname: evoke_slot;;
     arden: version 2.5;;
     version: 2.0;;
     institution: Peter L. Reichertz Institut;;
