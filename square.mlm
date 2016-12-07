@@ -3,12 +3,12 @@
 maintenance:
     title: Square a value;;
     mlmname: square;;
-    arden: version 1.0;;
-    version: 1.0;;
+    arden: version 2.5;;
+    version: 2.0;;
     institution: Peter L. Reichertz Institut;;
     author: Hannes Flicka;;
-    specialist: Hannes Flicka;;
-    date: 2012-04-04;;
+    specialist: Hannes Flicka; Mike Klimek;;
+    date: 2016-12-07;;
     validation: testing;;
 
 library:
@@ -18,14 +18,14 @@ library:
     links: http://arden2bytecode.sf.net/ ;;
 
 knowledge:
-    type: data-driven;;
+    type: data_driven;;
     data:
-        let variable be read {Enter variable value};;
-    evoke: ;; // MLM is called directly
+        LET variable BE read {Enter variable value};;
+    evoke: /* MLM is called directly */ ;;
     logic:
-        let square be variable * variable;
-        conclude true;; 
+        LET square BE variable * variable;
+        CONCLUDE TRUE;; 
     action:
-        write "You entered: " || variable || ".";
-        write "Multiplied with itself, that is: " || square || ".";;
+        WRITE "You entered: " || variable || ".";
+        WRITE "Multiplied with itself, that is: " || square || ".";;
 end:
