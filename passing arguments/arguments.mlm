@@ -1,19 +1,30 @@
-// Note that arguments passed to a MLM with the -a option on command line
-// must be valid Arden Syntax Expressions. Thus a string must be surrounded
-// by quotes which, in turn must be escaped with \ (backslash) on the
-// command line.
-// Thus passing string "argument 1" would be: 
-// $ arden2bytecode -a "\"argument 1\"" -r arguments.mlm
+/* 
+ * You may run this MLM with: $ arden2bytecode -r arguments.mlm
+ * However, to pass arguments, use the -a flag of Arden2ByteCode. The string 
+ * following the -a flag must be a valid constant Arden Syntax expression. 
+ * Otherwise a parsing error will occur. 
+ * To be a valid Arden Syntax expression, a string must be surrounded
+ * by quotes which, in turn, must be properly escaped when being
+ * passed on the command line.
+ * Passing the string "argument 1" would be: 
+ * $ arden2bytecode -a "\"argument 1\"" -r arguments.mlm
+ * 
+ * Windows Command Prompt:
+ * $ arden2bytecode -a (3.5,2) "5 WEEKS" 123 "\"Jane Doe\"" -r arguments.mlm
+ * 
+ * Bash:
+ * $ ./arden2bytecode -a '(3.5,2)' '5 WEEKS' 123 '"Jane Doe"' -r arguments.mlm
+ */
 
 maintenance:
     title: Example of how to pass arguments;;
     mlmname: arguments;;
-    arden: version 2.1;;  
-    version: 1.0;;
+    arden: version 2.5;;  
+    version: 2.0;;
     institution: Peter L. Reichertz Institut;;
     author: Hannes Flicka;;
-    specialist: Hannes Flicka;;
-    date: 2011-09-08;;
+    specialist: Hannes Flicka; Mike Klimek;;
+    date: 2016-12-07;;
     validation: testing;;
 
 library:
@@ -23,30 +34,20 @@ library:
     links: http://arden2bytecode.sf.net/ ;;
 
 knowledge:
-    type: data-driven;;
-    data:
-        args := argument;
-		num_args := count args;
-        counter := 1;
-        dest := destination {STDOUT};
-    ;;
+    type: data_driven;;
 
-    evoke:
-        ;; // MLM is called directly
-      
-    logic:
-        conclude true;;
+    data: (arg1, arg2, arg3, arg4, arg5) := ARGUMENT ;;
+
+    evoke: /* MLM is called directly */ ;;
+
+    logic: CONCLUDE TRUE ;;
 
     action:
-        if num_args is null then
-            num_args := 0;
-        endif;
-        write "There are " || num_args || " arguments to this MLM" at dest;
-        
-        for arg in args do
-            write "Argument number " || counter || " is: " || arg at dest;
-            counter := counter + 1;
-        enddo;
+        WRITE "Argument number 1 is: " || arg1;
+        WRITE "Argument number 2 is: " || arg2;
+        WRITE "Argument number 3 is: " || arg3;
+        WRITE "Argument number 4 is: " || arg4;
+        WRITE "Argument number 5 is: " || arg5;
     ;;
 
 end:
