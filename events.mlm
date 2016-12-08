@@ -1,0 +1,45 @@
+/*
+ * You may run this example with: $ arden2bytecode -e -p 9701 events.mlm
+ * To start the MLM, an event needs to be send to port 9701.
+ * In Linux with bash this can be done with the following command:
+ * $ echo "Patient admission" > /dev/tcp/127.0.0.1/9701
+ * In Windows you may need to use a telnet client, like PuTTY.
+ * To close the engine press "ctrl+c".
+ * 
+ * See this wiki page for more information: https://github.com/Tetr4/arden2bytecode/wiki/Scheduling
+ */ 
+
+maintenance:
+    title: Events Example;;
+    mlmname: events;;
+    arden: version 2.5;;
+    version: 1.0;;
+    institution: Peter L. Reichertz Institut;;
+    author: Mike Klimek;;
+    specialist: Mike Klimek;;
+    date: 2016-12-07;;
+    validation: testing;;
+
+library:
+    purpose: Demonstration of external events;;
+    explanation: n.a.;;
+    keywords: example, arden syntax editor, arden2bytecode;;
+    links: http://arden2bytecode.sf.net/ ;;
+
+knowledge:
+    type: data_driven;;
+
+    data:
+        LET admission BE EVENT {Patient admission};
+    ;;
+
+    evoke:
+        admission;
+    ;;
+
+    logic: CONCLUDE TRUE ;;
+
+    action:
+        WRITE "Event received on " || EVENTTIME;
+    ;;
+end:
