@@ -1,0 +1,36 @@
+// This MLM is supposed to be called by the main MLM
+
+maintenance:
+    title: Called MLM of call example;;
+    mlmname: volume_calculator;;
+    arden: version 2.5;;
+    version: 1.0;;
+    institution: Peter L. Reichertz Institut;;
+    author: Mike Klimek;;
+    specialist: Mike Klimek;;
+    date: 2016-12-07;;
+    validation: testing;;
+
+library:
+    purpose: Demonstration of MLM calls;;
+    explanation: Calculates the volume of a sphere;;
+    keywords: example, call, arden2bytecode;;
+    links: http://arden2bytecode.sf.net/ ;;
+
+knowledge:
+    type: data_driven;;
+
+    data:
+        radius := ARGUMENT;
+        
+    ;;
+
+    evoke: /* MLM is called directly */ ;;
+
+    logic:
+        volume := (4/3) * 3.14159265359 * radius**3;
+        CONCLUDE TRUE;
+    ;;
+ 
+    action: RETURN volume ;;
+end:

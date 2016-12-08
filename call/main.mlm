@@ -1,0 +1,42 @@
+/*
+ * You may run this MLM with: $ arden2bytecode --cp . -r main.mlm
+ * The classpath option ("--cp") is set to the current folder ("."), so that 
+ * the other MLM is found when running this example.
+ * When calling from a different folder, the classpath needs to be changed, e.g.:
+ * $ arden2bytecode --cp examples/call -r examples/call/main.mlm 
+ */
+ 
+maintenance:
+    title: Main (calling) MLM of call example;;
+    mlmname: main;;
+    arden: version 2.5;;
+    version: 1.0;;
+    institution: Peter L. Reichertz Institut;;
+    author: Mike Klimek;;
+    specialist: Mike Klimek;;
+    date: 2016-12-07;;
+    validation: testing;;
+
+library:
+    purpose: Demonstration of MLM calls;;
+    explanation: Call the other MLM, to calculate the volume of a sphere ;;
+    keywords: example, call, arden2bytecode;;
+    links: http://arden2bytecode.sf.net/ ;;
+
+knowledge:
+    type: data_driven;;
+
+    data:
+        calculator := MLM 'volume_calculator';
+        radius := READ {sphere radius in meter};
+    ;;
+
+    evoke: /* MLM is called directly */ ;;
+
+    logic:
+        volume := CALL calculator WITH radius;
+        CONCLUDE volume IS NOT NULL;
+    ;;
+ 
+    action: WRITE "The volume of a sphere with radius " || radius || "m is: " || volume || "m" ;;
+end:
